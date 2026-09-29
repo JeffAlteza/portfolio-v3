@@ -17,18 +17,19 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://jeffreyalteza.dev"),
-  title: "Jeffrey Alteza — Backend Engineer & AI Automation Specialist",
+  title: "Jeffrey Alteza — Fullstack Engineer & AI Automation Specialist",
+  alternates: { canonical: "/" },
   description:
-    "Production backend APIs and AI-powered automation systems. Laravel, Node, n8n, and the modern LLM stack — engineered with agentic precision.",
+    "Production backend APIs, AI-powered automation, and GTM automation. Laravel, Node, n8n, Clay, and the modern LLM stack — engineered with agentic precision.",
   openGraph: {
-    title: "Jeffrey Alteza — Backend Engineer & AI Automation Specialist",
+    title: "Jeffrey Alteza — Fullstack Engineer & AI Automation Specialist",
     description: "Production backend APIs and AI-powered automation systems.",
     type: "website",
     siteName: "Jeffrey Alteza",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Jeffrey Alteza — Backend Engineer & AI Automation Specialist",
+    title: "Jeffrey Alteza — Fullstack Engineer & AI Automation Specialist",
     description: "Production backend APIs and AI-powered automation systems.",
   },
 };

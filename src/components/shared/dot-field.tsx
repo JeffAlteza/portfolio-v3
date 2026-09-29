@@ -206,6 +206,10 @@ const DotField = memo(function DotField({
     const speedInterval = setInterval(updateMouseSpeed, 20);
     let frameCount = 0;
 
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
     function tick() {
       frameCount++;
       const dots = dotsRef.current;
@@ -300,12 +304,23 @@ const DotField = memo(function DotField({
       }
 
       ctx.fill();
-      rafRef.current = requestAnimationFrame(tick);
+      if (!reduceMotion && !document.hidden) {
+        rafRef.current = requestAnimationFrame(tick);
+      } else {
+        rafRef.current = null;
+      }
+    }
+
+    function onVisibility() {
+      if (!document.hidden && !reduceMotion && rafRef.current === null) {
+        rafRef.current = requestAnimationFrame(tick);
+      }
     }
 
     doResize();
     window.addEventListener("resize", resize);
     window.addEventListener("mousemove", onMouseMove, { passive: true });
+    document.addEventListener("visibilitychange", onVisibility);
     rafRef.current = requestAnimationFrame(tick);
 
     rebuildRef.current = () => {
@@ -319,8 +334,8 @@ const DotField = memo(function DotField({
       if (resizeTimer) clearTimeout(resizeTimer);
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", onMouseMove);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

@@ -17,11 +17,11 @@ export const workflows: Workflow[] = [
       { label: "GHL CRM" },
     ],
     images: [
-      "/n8n-projects/GHLInsight/Screenshot 2026-04-28 211350.png",
-      "/n8n-projects/GHLInsight/Screenshot 2026-04-28 211433.png",
-      "/n8n-projects/GHLInsight/Screenshot 2026-04-28 211518.png",
-      "/n8n-projects/GHLInsight/Screenshot 2026-04-28 211620.png",
-      "/n8n-projects/GHLInsight/Screenshot 2026-04-28 211652.png",
+      "/n8n-projects/GHLInsight/screenshot-211350.png",
+      "/n8n-projects/GHLInsight/screenshot-211433.png",
+      "/n8n-projects/GHLInsight/screenshot-211518.png",
+      "/n8n-projects/GHLInsight/screenshot-211620.png",
+      "/n8n-projects/GHLInsight/screenshot-211652.png",
     ],
   },
   {
