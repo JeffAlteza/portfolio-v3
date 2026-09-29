@@ -4,7 +4,6 @@ const socials: { label: string; href: string }[] = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/jeffrey-alteza-593632209",
   },
-  { label: "Instagram", href: "https://www.instagram.com/jeffreyalteza" },
 ];
 
 export function Footer() {
