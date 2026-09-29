@@ -7,8 +7,8 @@ export const projects: Project[] = [
     description:
       "Mobile financial platform supporting withdrawals, deposits, and fund transfers with a robust admin dashboard. Built fullstack with Claude Code using a subagent architecture. Real-time notifications via FCM and Telegram.",
     stack: ["Laravel", "Next.js", "Claude Code"],
-    image: "/dev-projects/e-wallet/e-wallet.jpg",
-    images: ["/dev-projects/e-wallet/e-wallet.jpg"],
+    image: "/dev-projects/e-wallet/e-wallet.webp",
+    images: ["/dev-projects/e-wallet/e-wallet.webp"],
   },
   {
     id: "02",
@@ -16,8 +16,8 @@ export const projects: Project[] = [
     description:
       "Simplifies home and building quote creation with automated calculations based on user input. Integrates with the Unmand API for smooth data processing and reliable results.",
     stack: ["Laravel", "DDD", "Event Sourcing"],
-    image: "/dev-projects/insurance-management/insurance.jpg",
-    images: ["/dev-projects/insurance-management/insurance.jpg"],
+    image: "/dev-projects/insurance-management/insurance.webp",
+    images: ["/dev-projects/insurance-management/insurance.webp"],
   },
   {
     id: "03",
@@ -43,14 +43,14 @@ export const projects: Project[] = [
     description:
       "Lets users update website content, images, and labels while managing bookings, clients, and calendars.",
     stack: ["Laravel", "Filament", "Blade"],
-    image: "/dev-projects/resort-cms/resort-cms.png",
+    image: "/dev-projects/resort-cms/resort-cms.webp",
     images: [
-      "/dev-projects/resort-cms/resort-cms.png",
-      "/dev-projects/resort-cms/Screenshot 2026-04-28 213247.png",
-      "/dev-projects/resort-cms/Screenshot 2026-04-28 213306.png",
-      "/dev-projects/resort-cms/Screenshot 2026-04-28 213439.png",
-      "/dev-projects/resort-cms/Screenshot 2026-04-28 213519.png",
-      "/dev-projects/resort-cms/Screenshot 2026-04-28 213557.png",
+      "/dev-projects/resort-cms/resort-cms.webp",
+      "/dev-projects/resort-cms/screenshot-213247.png",
+      "/dev-projects/resort-cms/screenshot-213306.png",
+      "/dev-projects/resort-cms/screenshot-213439.png",
+      "/dev-projects/resort-cms/screenshot-213519.png",
+      "/dev-projects/resort-cms/screenshot-213557.png",
     ],
   },
   {

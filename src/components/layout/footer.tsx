@@ -4,9 +4,6 @@ const socials: { label: string; href: string }[] = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/jeffrey-alteza-593632209",
   },
-  { label: "Facebook", href: "https://www.facebook.com/babjeffrey/" },
-  { label: "Instagram", href: "https://www.instagram.com/jeffreyalteza" },
-  { label: "TikTok", href: "https://www.tiktok.com/@jepoyalteza" },
 ];
 
 export function Footer() {

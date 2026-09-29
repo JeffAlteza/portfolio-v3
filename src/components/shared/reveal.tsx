@@ -14,41 +14,32 @@ export function Reveal({ children, delay = 0, className }: Props) {
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) {
-      setVisible(true);
-      return;
-    }
+    let io: IntersectionObserver | undefined;
 
-    if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
-    }
-
-    // Reveal immediately if already in viewport on mount
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      setVisible(true);
-      return;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (e.isIntersecting) {
-            setVisible(true);
-            io.disconnect();
+    if (el && typeof IntersectionObserver !== "undefined") {
+      // Fires on observe for elements already in the viewport.
+      io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              setVisible(true);
+              io?.disconnect();
+            }
           }
-        }
-      },
-      { threshold: 0.08, rootMargin: "0px 0px -5% 0px" }
-    );
-    io.observe(el);
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -5% 0px" }
+      );
+      io.observe(el);
+    }
 
-    // Safety net: ensure content becomes visible even if IO never fires
-    const safety = window.setTimeout(() => setVisible(true), 1200);
+    // Fallback when IO is unavailable; safety net if it never fires.
+    const safety = window.setTimeout(
+      () => setVisible(true),
+      io ? 1200 : 0
+    );
 
     return () => {
-      io.disconnect();
+      io?.disconnect();
       window.clearTimeout(safety);
     };
   }, []);

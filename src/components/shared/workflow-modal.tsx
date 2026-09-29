@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -14,13 +14,18 @@ interface Props {
 
 export function WorkflowModal({ workflow, onClose }: Props) {
   const [index, setIndex] = useState(0);
-  const [mounted, setMounted] = useState(false);
+  const [prevItem, setPrevItem] = useState(workflow);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
 
-  useEffect(() => setMounted(true), []);
-
-  useEffect(() => {
+  // Reset to the first image when a different item opens.
+  if (prevItem !== workflow) {
+    setPrevItem(workflow);
     setIndex(0);
-  }, [workflow]);
+  }
 
   const images = workflow?.images ?? [];
 

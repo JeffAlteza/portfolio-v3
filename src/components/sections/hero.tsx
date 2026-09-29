@@ -19,7 +19,8 @@ export function Hero() {
           <strong className="font-medium text-text">
             agentic workflow systems
           </strong>{" "}
-          that bring real automation to your business.
+          that bring real automation to your business, from backend systems to
+          GTM and lead-ops pipelines (Clay, Instantly, n8n).
         </p>
 
         <div className="flex flex-wrap items-center gap-3">
@@ -55,7 +56,7 @@ export function Hero() {
 
         <div className="mt-16 grid grid-cols-2 gap-6 border-t border-border pt-8 md:grid-cols-4 md:gap-8">
           <MetaItem label="Experience" value="3+ years backend" />
-          <MetaItem label="Focus" value="AI automation · APIs" />
+          <MetaItem label="Focus" value="AI & GTM automation · APIs" />
           <MetaItem label="Location" value="Philippines · Remote" />
           <MetaItem
             label="Status"
