@@ -79,6 +79,10 @@ export const techCategories: TechCategory[] = [
     ],
   },
   {
+    label: "GTM / RevOps",
+    items: ["Clay", "Instantly", "Clay CLI"],
+  },
+  {
     label: "Architecture / Patterns",
     items: ["Microservice", "Domain Driven Design", "Event Sourcing", "Multitenancy"],
   },
