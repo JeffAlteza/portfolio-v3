@@ -35,7 +35,10 @@ export function Workflows() {
                   : "md:col-span-3"
               }
             >
-              <WorkflowCard workflow={wf} onClick={() => setSelected(wf)} />
+              <WorkflowCard
+                workflow={wf}
+                onClick={wf.images?.length ? () => setSelected(wf) : undefined}
+              />
             </Reveal>
           ))}
         </div>

@@ -29,9 +29,9 @@ export const workflows: Workflow[] = [
     span: "side",
     title: "Resort AI Concierge & Booking Agent",
     description:
-      "Telegram-connected GPT-4o-mini agent with seven custom HTTP tool nodes wired into a live Laravel REST API. Guests converse naturally; bookings land in the production database.",
+      "Telegram concierge for a resort, running a Groq LLM (gpt-oss-120b) in n8n. The agent answers from the resort's own API through seven HTTP tools: resort info, features, gallery, feedback, availability, bookings, and inquiries. It only reports what the API returns, and every booking needs the guest's explicit confirmation. The admin gets a copy of each booking or inquiry on Telegram.",
     status: "live",
-    stack: ["n8n", "GPT-4o-mini", "Telegram", "Laravel", "Tool-calling"],
+    stack: ["n8n", "Groq", "Telegram", "Laravel", "Tool-calling"],
     nodes: [
       { label: "User" },
       { label: "Agent", active: true },
@@ -39,7 +39,7 @@ export const workflows: Workflow[] = [
       { label: "DB" },
     ],
     images: [
-      "/n8n-projects/Resort/ResortCMSAIChatbot.png",
+      "/n8n-projects/Resort/resortbot.png",
       "/n8n-projects/Resort/image1.png",
       "/n8n-projects/Resort/image2.png",
       "/n8n-projects/Resort/image3.png",
@@ -64,20 +64,6 @@ export const workflows: Workflow[] = [
     ],
   },
   {
-    id: "WF-004",
-    span: "half",
-    title: "Gmail Classifier",
-    description:
-      "Groq LLM routes inbox into categories via Switch node, auto-applies Gmail labels. Saves 30 min/day of triage.",
-    status: "live",
-    stack: ["Groq", "Gmail API"],
-    images: [
-      "/n8n-projects/EmailClassifier/EmailClassifier.png",
-      "/n8n-projects/EmailClassifier/image.png",
-      "/n8n-projects/EmailClassifier/image1.png",
-    ],
-  },
-  {
     id: "WF-005",
     span: "half",
     title: "Social Content Pipeline with Human-in-Loop",
@@ -92,18 +78,34 @@ export const workflows: Workflow[] = [
     ],
   },
   {
-    id: "WF-006",
+    id: "WF-008",
     span: "half",
-    title: "Order Notifier",
+    title: "AI Inbox Concierge",
     description:
-      "E-commerce webhook fans out to HTML email, ops Telegram channel, and audit Sheet. Merge node for atomic response.",
-    status: "live",
-    stack: ["Webhook", "Gmail", "Merge"],
-    images: [
-      "/n8n-projects/OrderNotification/OrderNotificationSystem.png",
-      "/n8n-projects/OrderNotification/image.png",
-      "/n8n-projects/OrderNotification/image1.png",
-      "/n8n-projects/OrderNotification/image2.png",
+      "Polls Gmail every minute, has a Groq LLM classify and extract each email (category, priority, deadline, amount, job details), and logs every message to a data table. Drafted replies wait for approval on Telegram before anything is sent. Invoices and job leads trigger alerts; everything else lands in a silent digest. Errors go to a Sheet and an admin chat.",
+    status: "testing",
+    stack: ["Gmail API", "Groq", "Telegram Bot", "Data Tables", "Approval Flow"],
+    images: ["/n8n-projects/MailButler/MailButler.png"],
+    nodes: [
+      { label: "Gmail" },
+      { label: "LLM", active: true },
+      { label: "Route" },
+      { label: "Approve" },
+    ],
+  },
+  {
+    id: "WF-009",
+    span: "half",
+    title: "Restaurant Messenger Bot",
+    description:
+      "Messenger concierge for restaurants: answers menu and FAQ questions from a knowledge-base doc and takes table reservations. Code, not the LLM, checks hours, capacity, and lead time, then the owner confirms each booking on Telegram. Hands off to a human when needed, and sends reminders and a morning brief from a Sheet-backed config.",
+    status: "in-progress",
+    stack: ["n8n", "Messenger", "Groq", "Google Sheets", "Telegram"],
+    nodes: [
+      { label: "Guest" },
+      { label: "Agent", active: true },
+      { label: "Code" },
+      { label: "Owner" },
     ],
   },
   // {

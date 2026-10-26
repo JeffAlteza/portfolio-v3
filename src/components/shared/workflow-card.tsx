@@ -17,9 +17,22 @@ export function WorkflowCard({ workflow, onClick }: { workflow: Workflow; onClic
   return (
     <article
       onClick={onClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      aria-haspopup={onClick ? "dialog" : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick();
+              }
+            }
+          : undefined
+      }
       className={cn(
         "group relative flex h-full min-h-[260px] flex-col overflow-hidden rounded-[14px] border border-border bg-bg-card p-[1.8rem] transition-all duration-300 ease-[cubic-bezier(0.2,0.8,0.2,1)] hover:-translate-y-0.5 hover:border-border-accent",
-        onClick && "cursor-pointer",
+        onClick && "cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-bright",
         minHeightClass
       )}
     >

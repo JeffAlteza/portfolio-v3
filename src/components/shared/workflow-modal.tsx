@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Image from "next/image";
 import type { Workflow } from "@/types";
+import { useDialogFocus } from "@/lib/use-dialog-focus";
 
 interface Props {
   workflow: Workflow | null;
@@ -15,6 +16,7 @@ interface Props {
 export function WorkflowModal({ workflow, onClose }: Props) {
   const [index, setIndex] = useState(0);
   const [prevItem, setPrevItem] = useState(workflow);
+  const dialogRef = useDialogFocus<HTMLDivElement>(workflow !== null);
   const mounted = useSyncExternalStore(
     () => () => {},
     () => true,
@@ -69,6 +71,10 @@ export function WorkflowModal({ workflow, onClose }: Props) {
 
           {/* Modal */}
           <motion.div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={`${workflow.id}-title`}
             className="relative z-10 w-full max-w-3xl rounded-2xl border border-border-bright bg-bg-card overflow-hidden"
             initial={{ opacity: 0, scale: 0.96, y: 12 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -82,12 +88,13 @@ export function WorkflowModal({ workflow, onClose }: Props) {
                   {workflow.id}
                   {workflow.featured && " / Featured"}
                 </p>
-                <h2 className="text-[1.2rem] font-medium tracking-[-0.02em] text-text">
+                <h2 id={`${workflow.id}-title`} className="text-[1.2rem] font-medium tracking-[-0.02em] text-text">
                   {workflow.title}
                 </h2>
               </div>
               <button
                 onClick={onClose}
+                aria-label="Close"
                 className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-lg border border-border text-text-muted transition-colors hover:border-border-bright hover:text-text"
               >
                 <X size={15} />
@@ -120,12 +127,14 @@ export function WorkflowModal({ workflow, onClose }: Props) {
                   <>
                     <button
                       onClick={prev}
+                      aria-label="Previous screenshot"
                       className="absolute left-3 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-lg border border-border-bright bg-bg-card/80 text-text-muted backdrop-blur-sm transition-colors hover:text-text"
                     >
                       <ChevronLeft size={16} />
                     </button>
                     <button
                       onClick={next}
+                      aria-label="Next screenshot"
                       className="absolute right-3 top-1/2 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-lg border border-border-bright bg-bg-card/80 text-text-muted backdrop-blur-sm transition-colors hover:text-text"
                     >
                       <ChevronRight size={16} />
@@ -142,6 +151,8 @@ export function WorkflowModal({ workflow, onClose }: Props) {
                   <button
                     key={i}
                     onClick={() => setIndex(i)}
+                    aria-label={`Show screenshot ${i + 1}`}
+                    aria-current={i === index ? "true" : undefined}
                     className="h-1.5 rounded-full transition-all duration-200"
                     style={{
                       width: i === index ? "20px" : "6px",

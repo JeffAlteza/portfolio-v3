@@ -55,7 +55,7 @@ export function Hero() {
         </div>
 
         <div className="mt-16 grid grid-cols-2 gap-6 border-t border-border pt-8 md:grid-cols-4 md:gap-8">
-          <MetaItem label="Experience" value="3+ years backend" />
+          <MetaItem label="Experience" value="4 years backend" />
           <MetaItem label="Focus" value="AI & GTM automation · APIs" />
           <MetaItem label="Location" value="Philippines · Remote" />
           <MetaItem
